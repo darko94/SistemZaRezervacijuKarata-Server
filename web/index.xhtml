@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Sistem za rezeraciju karata - CS230</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/cover.css"/>
+        <h:outputStylesheet name="css/main.css"/>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Dobrodošli #{login.user}</h1>
+            <h:commandLink action="#{login.logout}" value="Izloguj se"></h:commandLink>
+        </h:form>
+        <div>
+            <center>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h1><h:link styleClass="btn btn-primary btn-lg dugme" outcome="/web/film/List" value="F I L M O V I"/></h1>
+                <br />
+                <h1><h:link styleClass="btn btn-primary btn-lg dugme" outcome="/web/sala/List" value="S A L E"/></h1>
+                <br />
+                <h1><h:link styleClass="btn btn-primary btn-lg dugme" outcome="/web/projekcija/List" value="P R O J E K C I J E"/></h1>
+                <br />
+                <h1><h:link styleClass="btn btn-primary btn-lg dugme" outcome="/web/rezervacija/List" value="R E Z E R V A C I J E"/></h1>
+                <!--<br />
+                <h1><h:link outcome="/web/korisnik/List" value="Korisnici"/></h1>
+                <br />
+                <h1><h:link outcome="/web/userRoles/List" value="Role"/></h1>
+                <br />
+                <h1><h:link outcome="/web/users/List" value="Users"/></h1>-->
+            </center>
+        </div>
+    </h:body>
+</html>
+

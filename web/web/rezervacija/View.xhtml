@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRezervacijaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:form>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewRezervacijaLabel_projekcijaId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{rezervacijaController.selected.projekcijaId} - #{rezervacijaController.selected.projekcijaId.salaId.naziv}" title="#{bundle.ViewRezervacijaTitle_projekcijaId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewRezervacijaLabel_korisnikId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{rezervacijaController.selected.korisnikId.ime} #{rezervacijaController.selected.korisnikId.prezime}, email: #{rezervacijaController.selected.korisnikId.email}, username: #{rezervacijaController.selected.korisnikId.username}" title="#{bundle.ViewRezervacijaTitle_korisnikId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewRezervacijaLabel_brojKarata}"/>
+                        <h:outputText style="font-size: 25px;" value="#{rezervacijaController.selected.brojKarata}" title="#{bundle.ViewRezervacijaTitle_brojKarata}"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{rezervacijaController.prepareCreate}" value="#{bundle.ViewRezervacijaCreateLink}" styleClass="btn btn-primary"/> | 
+                    <h:link outcome="Edit" value="#{bundle.ViewRezervacijaEditLink}" styleClass="btn btn-default"/> | 
+                    <h:commandLink action="#{rezervacijaController.destroyAndView}" value="#{bundle.ViewRezervacijaDestroyLink}" styleClass="btn btn-danger"/>
+                    <br />
+                    <br />
+                    <h:commandLink action="#{rezervacijaController.prepareList}" value="#{bundle.ViewRezervacijaShowAllLink}" styleClass="btn btn-primary btn-sm"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ViewRezervacijaIndexLink}" styleClass="btn btn-default btn-sm"/>
+
+                </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

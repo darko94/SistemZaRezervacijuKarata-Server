@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRezervacijaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <center>
+                    <h:panelGroup id="messagePanel" layout="block" style="border: 1px solid">
+                        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    </h:panelGroup>
+                </center>
+                <h:outputText escape="false" value="#{bundle.ListRezervacijaEmpty}" rendered="#{rezervacijaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{rezervacijaController.items.rowCount > 0}">
+                    <h:outputText value="#{rezervacijaController.pagination.pageFirstItem + 1}..#{rezervacijaController.pagination.pageLastItem + 1}/#{rezervacijaController.pagination.itemsCount}" rendered="#{projekcijaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rezervacijaController.previous}" value="#{bundle.Previous} #{rezervacijaController.pagination.pageSize}" rendered="#{rezervacijaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rezervacijaController.next}" value="#{bundle.Next} #{rezervacijaController.pagination.pageSize}" rendered="#{rezervacijaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable styleClass="table table-stripped table-hover" value="#{rezervacijaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProjekcijaTitle_filmId} / #{bundle.ListProjekcijaTitle_salaId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.projekcijaId.filmId.naslov} / #{item.projekcijaId.salaId.naziv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProjekcijaTitle_datum} / #{bundle.ListProjekcijaTitle_vreme}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.projekcijaId.datum}">
+                                <f:convertDateTime pattern="dd.MM.yyyy." />
+                            </h:outputText>&nbsp;
+                            <h:outputText value="#{item.projekcijaId.vreme}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRezervacijaTitle_korisnikId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.korisnikId.ime} #{item.korisnikId.prezime}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRezervacijaTitle_brojKarata}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.brojKarata}"/>
+                        </h:column>
+
+
+                        <h:column>
+                            <h:commandLink action="#{rezervacijaController.prepareView}" style="color: black;"><span class="glyphicon glyphicon-info-sign"></span> #{bundle.ListRezervacijaViewLink}</h:commandLink> | 
+                            
+                            <h:commandLink action="#{rezervacijaController.prepareEdit}" style="color: black;"><span class="glyphicon glyphicon-pencil"></span> #{bundle.ListRezervacijaEditLink}</h:commandLink> | 
+                            
+                            <h:commandLink action="#{rezervacijaController.destroy}" style="color: red;"><span class="glyphicon glyphicon-remove"></span> #{bundle.ListRezervacijaDestroyLink}</h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{rezervacijaController.prepareCreate}" value="#{bundle.ListRezervacijaCreateLink}" styleClass="btn btn-primary"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRezervacijaIndexLink}" styleClass="btn btn-default btn-sm"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

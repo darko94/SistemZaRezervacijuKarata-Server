@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSalaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </center>
+            <div class="container login-container">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateSalaLabel_id}" for="id" style="display: none"/>
+                        <h:inputText id="id" value="#{salaController.selected.id}" title="#{bundle.CreateSalaTitle_id}" required="false" requiredMessage="#{bundle.CreateSalaRequiredMessage_id}" style="display: none"/>
+
+                        <h:outputLabel value="#{bundle.CreateSalaLabel_naziv}" for="naziv" />
+                        <h:inputText id="naziv" value="#{salaController.selected.naziv}" title="#{bundle.CreateSalaTitle_naziv}" required="true" requiredMessage="#{bundle.CreateSalaRequiredMessage_naziv}" styleClass="form-control"/>
+
+                        <h:outputLabel value="#{bundle.CreateSalaLabel_brojSedista}" for="brojSedista" />
+                        <h:inputText id="brojSedista" value="#{salaController.selected.brojSedista}" title="#{bundle.CreateSalaTitle_brojSedista}" required="true" requiredMessage="#{bundle.CreateSalaRequiredMessage_brojSedista}" styleClass="form-control"/>
+
+                        <h:outputLabel value="#{bundle.CreateSalaLabel_tehnologija}" for="tehnologija" />
+                        <h:inputText id="tehnologija" value="#{salaController.selected.tehnologija}" title="#{bundle.CreateSalaTitle_tehnologija}" required="true" requiredMessage="#{bundle.CreateSalaRequiredMessage_tehnologija}" styleClass="form-control"/>
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{salaController.create}" value="#{bundle.CreateSalaSaveLink}" styleClass="btn btn-success"/>
+                    <br />
+                    <br />
+                    <h:commandLink action="#{salaController.prepareList}" value="#{bundle.CreateSalaShowAllLink}" immediate="true" styleClass="btn btn-primary btn-sm"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.CreateSalaIndexLink}" styleClass="btn btn-default btn-sm"/>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

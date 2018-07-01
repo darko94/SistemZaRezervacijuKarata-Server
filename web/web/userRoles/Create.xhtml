@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserRolesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserRolesLabel_userRoleId}" for="userRoleId" />
+                    <h:inputText id="userRoleId" value="#{userRolesController.selected.userRoleId}" title="#{bundle.CreateUserRolesTitle_userRoleId}" required="true" requiredMessage="#{bundle.CreateUserRolesRequiredMessage_userRoleId}"/>
+                    <h:outputLabel value="#{bundle.CreateUserRolesLabel_role}" for="role" />
+                    <h:inputText id="role" value="#{userRolesController.selected.role}" title="#{bundle.CreateUserRolesTitle_role}" required="true" requiredMessage="#{bundle.CreateUserRolesRequiredMessage_role}"/>
+                    <h:outputLabel value="#{bundle.CreateUserRolesLabel_username}" for="username" />
+                    <h:selectOneMenu id="username" value="#{userRolesController.selected.username}" title="#{bundle.CreateUserRolesTitle_username}" required="true" requiredMessage="#{bundle.CreateUserRolesRequiredMessage_username}">
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userRolesController.create}" value="#{bundle.CreateUserRolesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userRolesController.prepareList}" value="#{bundle.CreateUserRolesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserRolesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

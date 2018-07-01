@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRezervacijaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </center>
+            <div class="container login-container">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditRezervacijaLabel_id}" for="id" style="display: none"/>
+                        <h:inputText id="id" value="#{rezervacijaController.selected.id}" title="#{bundle.EditRezervacijaTitle_id}" required="false" requiredMessage="#{bundle.EditRezervacijaRequiredMessage_id}" style="display: none"/>
+                        <h:outputLabel value="#{bundle.EditRezervacijaLabel_projekcijaId}" for="projekcijaId" />
+                        <h:selectOneMenu id="projekcijaId" value="#{rezervacijaController.selected.projekcijaId}" title="#{bundle.EditRezervacijaTitle_projekcijaId}" required="true" requiredMessage="#{bundle.CreateRezervacijaRequiredMessage_projekcijaId}" styleClass="form-control">
+                            <f:selectItems value="#{projekcijaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditRezervacijaLabel_korisnikId}" for="korisnikId" />
+                        <h:selectOneMenu id="korisnikId" value="#{rezervacijaController.selected.korisnikId}" title="#{bundle.EditRezervacijaTitle_korisnikId}" required="true" requiredMessage="#{bundle.CreateRezervacijaRequiredMessage_korisnikId}" styleClass="form-control">
+                            <f:selectItems value="#{korisnikController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditRezervacijaLabel_brojKarata}" for="brojKarata" />
+                        <h:inputText id="brojKarata" value="#{rezervacijaController.selected.brojKarata}" title="#{bundle.EditRezervacijaTitle_brojKarata}" required="true" requiredMessage="#{bundle.CreateRezervacijaRequiredMessage_brojKarata}" styleClass="form-control"/>
+
+                    </h:panelGrid>
+                    <h:commandLink action="#{rezervacijaController.update}" value="#{bundle.EditRezervacijaSaveLink}" styleClass="btn btn-success"/>
+                    <br />
+                    <br />
+                    <h:link outcome="View" value="#{bundle.EditRezervacijaViewLink}" styleClass="btn btn-primary"/>
+                    <br />
+                    <br />
+                    <h:commandLink action="#{rezervacijaController.prepareList}" value="#{bundle.EditRezervacijaShowAllLink}" immediate="true" styleClass="btn btn-primary btn-sm"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.EditRezervacijaIndexLink}" styleClass="btn btn-default btn-sm"/>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

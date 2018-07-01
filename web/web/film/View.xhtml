@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{filmController.selected.naslov}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </center>
+            <br/>
+            <div class="col-md-12">
+                <iframe width="65%" height="400" src="#{filmController.selected.youtubeUrl}" frameborder="1" allowfullscreen="true"></iframe>
+                <br/>
+                <br/>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-3">
+                    <img src="#{filmController.selected.slikaUrl}" width="223px" height="324px"/>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+
+                        <div class="col-md-11">
+                            <p align="justify">#{filmController.selected.opis}</p>
+                            <hr/>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p align="right"><strong>#{bundle.ViewFilmLabel_originalniNaslov}</strong></p>
+                        </div>
+                        <div class="col-md-7">
+                            <p align="justify">#{filmController.selected.originalniNaslov}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p align="right"><strong>#{bundle.ViewFilmLabel_pocetakPrikazivanja}</strong></p>
+                        </div>
+                        <div class="col-md-7" align="justify">
+                            <h:outputText value="#{filmController.selected.pocetakPrikazivanja}">
+                                <f:convertDateTime pattern="dd.MM.yyyy." />
+                            </h:outputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p align="right"><strong>#{bundle.ViewFilmLabel_duzinaTrajanja}</strong></p>
+                        </div>
+                        <div class="col-md-7">
+                            <p align="left">#{filmController.selected.duzinaTrajanja} min.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p align="right"><strong>#{bundle.ViewFilmLabel_drzava}/#{bundle.ViewFilmLabel_godina}</strong></p>
+                        </div>
+                        <div class="col-md-7">
+                            <p align="left">#{filmController.selected.drzava}/#{filmController.selected.godina}.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p align="right"><strong>#{bundle.ViewFilmLabel_zanr}</strong></p>
+                        </div>
+                        <div class="col-md-7">
+                            <p align="left">#{filmController.selected.zanr}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr/>
+            <h:form>
+                <h:commandLink action="#{filmController.prepareCreate}" value="#{bundle.ViewFilmCreateLink}" styleClass="btn btn-primary"/> | 
+                <h:link outcome="Edit" value="#{bundle.ViewFilmEditLink}" styleClass="btn btn-default"/> | 
+                <h:commandLink action="#{filmController.destroyAndView}" value="#{bundle.ViewFilmDestroyLink}" styleClass="btn btn-danger"/>
+
+                <br />
+                <br />
+                <h:commandLink action="#{filmController.prepareList}" value="#{bundle.ViewFilmShowAllLink}" styleClass="btn btn-primary btn-sm"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFilmIndexLink}" styleClass="btn btn-default btn-sm"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProjekcijaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <br/>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewProjekcijaLabel_filmId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{projekcijaController.selected.filmId.naslov}" title="#{bundle.ViewProjekcijaTitle_filmId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewProjekcijaLabel_salaId}"/>
+                        <h:outputText style="font-size: 25px;" value="#{projekcijaController.selected.salaId.naziv}" title="#{bundle.ViewProjekcijaTitle_salaId}"/>
+
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewProjekcijaLabel_datum}"/>
+                        <h:outputText style="font-size: 25px;" value="#{projekcijaController.selected.datum}" title="#{bundle.ViewProjekcijaTitle_datum}">
+                            <f:convertDateTime pattern="dd.MM.yyyy." />
+                        </h:outputText>
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewProjekcijaLabel_vreme}"/>
+                        <h:outputText style="font-size: 25px;" value="#{projekcijaController.selected.vreme}" title="#{bundle.ViewProjekcijaTitle_vreme}"/>
+                        <h:outputText style="font-size: 25px;" value="#{bundle.ViewProjekcijaLabel_slobodnoSedista}"/>
+                        <h:outputText style="font-size: 25px;" value="#{projekcijaController.selected.slobodnoSedista}" title="#{bundle.ViewProjekcijaTitle_slobodnoSedista}"/>
+
+                    </h:panelGrid>
+                    <br />
+                    <h:commandLink action="#{projekcijaController.prepareCreate}" value="#{bundle.ViewProjekcijaCreateLink}" styleClass="btn btn-primary"/> | 
+                    <h:link outcome="Edit" value="#{bundle.ViewProjekcijaEditLink}" styleClass="btn btn-default"/> | 
+                    <h:commandLink action="#{projekcijaController.destroyAndView}" value="#{bundle.ViewProjekcijaDestroyLink}" styleClass="btn btn-danger"/>
+
+                    <br />
+                    <br />
+                    <h:commandLink action="#{projekcijaController.prepareList}" value="#{bundle.ViewProjekcijaShowAllLink}" styleClass="btn btn-primary btn-sm"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.ViewProjekcijaIndexLink}" styleClass="btn btn-default btn-sm"/>
+
+                </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProjekcijaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+            </center>
+            <div class="container login-container">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditProjekcijaLabel_id}" for="id" style="display: none"/>
+                        <h:inputText id="id" value="#{projekcijaController.selected.id}" title="#{bundle.EditProjekcijaTitle_id}" required="false" requiredMessage="#{bundle.EditProjekcijaRequiredMessage_id}" style="display: none"/>
+                        <h:outputLabel value="#{bundle.EditProjekcijaLabel_filmId}" for="filmId" />
+                        <h:selectOneMenu id="filmId" value="#{projekcijaController.selected.filmId}" title="#{bundle.EditProjekcijaTitle_filmId}" required="true" requiredMessage="#{bundle.CreateProjekcijaRequiredMessage_filmId}" styleClass="form-control">
+                            <f:selectItems value="#{filmController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditProjekcijaLabel_salaId}" for="salaId" />
+                        <h:selectOneMenu id="salaId" value="#{projekcijaController.selected.salaId}" title="#{bundle.EditProjekcijaTitle_salaId}" required="true" requiredMessage="#{bundle.CreateProjekcijaRequiredMessage_salaId}" styleClass="form-control">
+                            <f:selectItems value="#{salaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="#{bundle.EditProjekcijaLabel_datum}" for="datum" />
+                        <h:inputText id="datum" value="#{projekcijaController.selected.datum}" title="#{bundle.EditProjekcijaTitle_datum}" required="true" requiredMessage="#{bundle.CreateProjekcijaRequiredMessage_datum}" styleClass="form-control">
+                            <f:convertDateTime pattern="dd.MM.yyyy." />
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle.EditProjekcijaLabel_vreme}" for="vreme" />
+                        <h:inputText id="vreme" value="#{projekcijaController.selected.vreme}" title="#{bundle.EditProjekcijaTitle_vreme}" required="true" requiredMessage="#{bundle.CreateProjekcijaRequiredMessage_vreme}" styleClass="form-control"/>
+
+                    
+                    </h:panelGrid>
+                    <h:commandLink action="#{projekcijaController.update}" value="#{bundle.EditProjekcijaSaveLink}" styleClass="btn btn-success"/>
+                    <br />
+                    <br />
+                    <h:link outcome="View" value="#{bundle.EditProjekcijaViewLink}" styleClass="btn btn-primary"/>
+                    <br />
+                    <br />
+                    <h:commandLink action="#{projekcijaController.prepareList}" value="#{bundle.EditProjekcijaShowAllLink}" immediate="true" styleClass="btn btn-primary btn-sm"/>
+                    <br />
+                    <br />
+                    <h:link outcome="/index" value="#{bundle.EditProjekcijaIndexLink}" styleClass="btn btn-default btn-sm"/>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
